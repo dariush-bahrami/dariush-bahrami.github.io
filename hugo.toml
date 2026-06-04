@@ -1,0 +1,28 @@
+baseURL = "https://dariush-bahrami.github.io/"
+locale = "en-us"
+title = "Dariush's Blog"
+theme = "PaperMod"
+paginate = 10
+
+[params]
+  description = "Notes on machine learning, research and engineering"
+  author = "Dariush"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
