@@ -4,6 +4,7 @@ draft = false
 title = 'Understanding Precision and Recall'
 description = 'Make sense of precision and recall in the context of a confusion matrix'
 tags = ['machine-learning', 'data-science', 'statistics', 'classification', 'model-evaluation']
+math = true
 +++
 
 ## Introduction
