@@ -2,6 +2,8 @@
 date = '2026-06-05T14:46:42+03:30'
 draft = false
 title = 'Understanding Precision and Recall'
+description = 'Make sense of precision and recall in the context of a confusion matrix'
+tags = ['machine-learning', 'data-science', 'statistics', 'classification', 'model-evaluation']
 +++
 
 ## Introduction
