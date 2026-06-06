@@ -96,8 +96,8 @@ $$
 F(u, v) = \frac{2}{N}\, C(u)\, C(v)
 \sum_{x=0}^{N-1} \sum_{y=0}^{N-1}
 f(x, y)
-\cos\!\left(\frac{(2x+1)\,u\,\pi}{2N}\right)
-\cos\!\left(\frac{(2y+1)\,v\,\pi}{2N}\right)
+\cos\left(\frac{(2x+1)\,u\,\pi}{2N}\right)
+\cos\left(\frac{(2y+1)\,v\,\pi}{2N}\right)
 $$
 
 where $C(0) = 1/\sqrt{2}$ and $C(k) = 1$ for $k > 0$.
@@ -107,8 +107,8 @@ frequency pair $(u, v)$. Each is the outer product of two 1-D cosine waves:
 
 $$
 \phi_{u,v}(x, y)
-= \cos\!\left(\frac{(2x+1)\,u\,\pi}{2N}\right)
-  \cos\!\left(\frac{(2y+1)\,v\,\pi}{2N}\right)
+= \cos\left(\frac{(2x+1)\,u\,\pi}{2N}\right)
+  \cos\left(\frac{(2y+1)\,v\,\pi}{2N}\right)
 $$
 
 - $(u, v) = (0, 0)$ is the **DC component** — a flat patch capturing the block's average intensity
