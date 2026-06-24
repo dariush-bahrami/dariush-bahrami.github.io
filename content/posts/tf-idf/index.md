@@ -4,6 +4,7 @@ draft = false
 title = 'TF-IDF Explained'
 description = 'TF-IDF From Scratch: Teaching a Computer to Find the Right Document'
 tags = ['natural-language-processing', 'information-retrieval', 'python', 'from-scratch']
+math = true
 +++
 
 Search feels like magic until you build one yourself. Type in a few words, and somehow the right document floats to the top of the list. Under the hood, even the simplest version of this magic relies on an elegant, decades-old idea: TF-IDF. In this post, we'll build a tiny search engine from scratch, using nothing but Python's standard library, and use it to find the most relevant document for a query.
