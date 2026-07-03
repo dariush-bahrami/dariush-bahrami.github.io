@@ -1,5 +1,5 @@
 +++
-date = '2026-07-3T16:58:36+03:30'
+date = '2026-07-03T16:58:36+03:30'
 draft = false
 title = 'BM25 Explained'
 description = "BM25 Explained: Fixing TF-IDF's Two Biggest Blind Spots"
