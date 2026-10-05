@@ -1,6 +1,6 @@
 baseURL = "https://dariush-bahrami.github.io/"
 locale = "en-us"
-title = "Dariush's Blog"
+title = "Dariush Bahrami"
 theme = "PaperMod"
 paginate = 10
 
