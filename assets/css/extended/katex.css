@@ -1,0 +1,48 @@
+/* Keep KaTeX display equations inside the post column. */
+.katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.25rem;
+}
+
+.katex-display > .katex {
+  max-width: 100%;
+}
+
+/*
+  KaTeX positions \tag absolutely at the visible right edge. When the formula
+  is wider than the column, that overlaps the math. On narrow screens, put the
+  tag after the formula in normal flex flow so it scrolls with the equation.
+*/
+@media (max-width: 640px) {
+  .katex-display {
+    margin: 0.75em 0;
+    font-size: 0.95em;
+    overflow-x: visible;
+  }
+
+  .katex-display > .katex > .katex-html {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    min-width: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .katex-display .katex-html > .base {
+    order: 1;
+    flex: 0 0 auto;
+  }
+
+  .katex-display .tag {
+    position: static !important;
+    order: 2;
+    flex: 0 0 auto;
+    margin-left: 0.75em;
+    float: none !important;
+  }
+}

@@ -153,7 +153,7 @@ We have reduced the problem to choosing a conditional path for one known image. 
 
 #### Gaussian Probability Paths and Linear Schedules
 
-The **Gaussian conditional probability path** chooses a Gaussian distribution at each intermediate time: for fixed $z$ and $t<1$, the noisy point has mean $\alpha_tz$ and covariance $\beta_t^2I_d$. At $t=1$, the distribution becomes $\delta_z$. The lecture notes identify this path as a common choice in state-of-the-art models.
+The **Gaussian conditional probability path** chooses a Gaussian distribution at each intermediate time: for fixed $z$ and $t\lt 1$, the noisy point has mean $\alpha_tz$ and covariance $\beta_t^2I_d$. At $t=1$, the distribution becomes $\delta_z$. The lecture notes identify this path as a common choice in state-of-the-art models.
 
 Two functions of time, $\alpha_t$ and $\beta_t$, determine the amount of data and noise. These functions are called **schedules**. The data coefficient $\alpha_t$ increases from $0$ to $1$, while the noise coefficient $\beta_t$ decreases from $1$ to $0$. We take both functions to be continuously differentiable and monotone.
 
@@ -225,7 +225,7 @@ For the linear CondOT schedules, $\dot\alpha_t=1$ and $\dot\beta_t=-1$. Equation
 
 $$
 u_t^{\mathrm{target}}(x_t\mid z)=z-\epsilon
-\quad\text{or, for }t<1,\quad
+\quad\text{or, for }t\lt 1,\quad
 u_t^{\mathrm{target}}(x\mid z)=\frac{z-x}{1-t}.\tag{12}
 $$
 
@@ -284,11 +284,12 @@ Sampling $t$ and $x$ is easy, but the target in this loss requires the intractab
 The **conditional flow matching (CFM) loss** uses the same network inputs, but compares its prediction with $u_t^{\mathrm{target}}(x_t\mid z)$ for a sampled clean example $z$. This target is easy to calculate. For the Gaussian path, we create $x_t$ from a known pair $(z,\epsilon)$ and calculate the conditional velocity using Equation (10). The resulting loss is
 
 $$
+\begin{aligned}
 \mathcal L_{\mathrm{CFM}}(\theta)
-=\mathbb E_{t,\,z\sim p_{\mathrm{data}},\,\epsilon\sim\mathcal N(0,I_d)}
+&=\mathbb E_{t\sim\mathrm{Unif}[0,1],\,z\sim p_{\mathrm{data}},\,\epsilon\sim\mathcal N(0,I_d)}
 \left[\left\|u_t^\theta(\alpha_tz+\beta_t\epsilon)
--(\dot\alpha_tz+\dot\beta_t\epsilon)\right\|^2\right],
-\qquad t\sim\mathrm{Unif}[0,1].\tag{16}
+-(\dot\alpha_tz+\dot\beta_t\epsilon)\right\|^2\right].
+\end{aligned}\tag{16}
 $$
 
 We can calculate every term in Equation (16). We need one data example, one noise sample, a time, and the schedule derivatives. But we want the network to learn the marginal velocity. Why does training on a conditional velocity achieve that?
@@ -494,9 +495,9 @@ $$
 
 To calculate the velocity, multiply the score by $a_t$ and add $b_tx$. Neither coefficient is learned. We use these formulas where $\alpha_t$ and $\beta_t$ are nonzero.
 
-For the linear schedules $\alpha_t=t$ and $\beta_t=1-t$, the coefficients are $a_t=(1-t)/t$ and $b_t=1/t$. The velocity formula simplifies to $u_t^{\mathrm{target}}(x)=[(1-t)\nabla_x\log p_t(x)+x]/t$ for $0<t<1$. Multiply the score by $1-t$, add $x$, and divide by $t$.
+For the linear schedules $\alpha_t=t$ and $\beta_t=1-t$, the coefficients are $a_t=(1-t)/t$ and $b_t=1/t$. The velocity formula simplifies to $u_t^{\mathrm{target}}(x)=[(1-t)\nabla_x\log p_t(x)+x]/t$ for $0\lt t\lt 1$. Multiply the score by $1-t$, add $x$, and divide by $t$.
 
-**We can also calculate the score from the velocity.** Equation (25) can be rearranged whenever $a_t\ne0$. For the linear schedules, this gives $\nabla_x\log p_t(x)=[t\,u_t^{\mathrm{target}}(x)-x]/(1-t)$ for $0<t<1$. Multiply the velocity by $t$, subtract $x$, and divide by $1-t$.
+**We can also calculate the score from the velocity.** Equation (25) can be rearranged whenever $a_t\ne0$. For the linear schedules, this gives $\nabla_x\log p_t(x)=[t\,u_t^{\mathrm{target}}(x)-x]/(1-t)$ for $0\lt t\lt 1$. Multiply the velocity by $t$, subtract $x$, and divide by $1-t$.
 
 A network trained with flow matching can therefore supply a score estimate too. For these intermediate times, we can use either a score network or a velocity network to calculate the velocity and score needed for the SDE below.
 
@@ -710,7 +711,7 @@ The linear combination in Equation (36) can also be used with other probability 
 
 We need a guided prediction and an unguided prediction, but one network can learn both. We introduce a special **null prompt** $\varnothing$, which tells the network that no prompt information is available. The same network predicts $u_t^\theta(x\mid y)$ with the real prompt and $u_t^\theta(x\mid\varnothing)$ with the null prompt. It returns one velocity vector per evaluation.
 
-To train the network to generate without a prompt, we randomly drop the prompt during training. For each image–prompt pair, independently replace $y$ with $\varnothing$ with probability $\eta$, where $0<\eta<1$. Call the resulting prompt $\widehat y$. We keep the same clean image, noisy input, and conditional velocity target. The training loss becomes
+To train the network to generate without a prompt, we randomly drop the prompt during training. For each image–prompt pair, independently replace $y$ with $\varnothing$ with probability $\eta$, where $0\lt\eta\lt 1$. Call the resulting prompt $\widehat y$. We keep the same clean image, noisy input, and conditional velocity target. The training loss becomes
 
 $$
 \mathcal L_{\mathrm{CFG\text{-}CFM}}(\theta)
